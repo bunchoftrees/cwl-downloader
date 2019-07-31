@@ -1,0 +1,17 @@
+
+Run with:
+
+   cwl-runner --local download.cwl --bashScript download.sh --urlFile 2.txt 
+   cwl-runner download.cwl --bashScript download.sh --urlFile 2.txt 
+
+for paired fastq's:
+
+   cwl-runner --local downloadPaired.cwl --bashScript downloadPaired.sh --urlFile 2-paired.txt 
+   cwl-runner --debug downloadPaired.cwl --bashScript downloadPaired.sh --urlFile 2-paired.txt
+
+See #12976
+
+for md5sum'ing:
+
+   cwl-runner --local md5sum.cwl md5sum.yml
+
