@@ -2,6 +2,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
+label: Downloads files from URL(s)
 
 $namespaces:
   arv: "http://arvados.org/cwl#"
@@ -21,15 +22,18 @@ baseCommand: bash
 inputs:
   bashScript:
     type: File
+    label: script handling curl and md5
     inputBinding:
       position: 1
   url:
     type: string
+    label: url to download from
     inputBinding:
       position: 2
 
 outputs:
   out1:
-    type: Directory
+    type: File[]
+    label: files generated from download and md5sum
     outputBinding:
       glob: "*"

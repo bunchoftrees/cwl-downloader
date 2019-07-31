@@ -2,6 +2,7 @@
 
 cwlVersion: v1.0
 class: Workflow
+label: Downloads files from URL(s)
 
 $namespaces:
   arv: "http://arvados.org/cwl#"
@@ -9,7 +10,7 @@ $namespaces:
 
 requirements:
   - class: DockerRequirement
-    dockerPull: cure/arvados-download
+    dockerPull: curii/arvados-download
   - class: ScatterFeatureRequirement
 
 hints:
@@ -21,28 +22,34 @@ hints:
     outputTTL: 86400
 
 inputs:
-  bashScript: File
-  urlFile: File
+  bashScript:
+    type: File
+    label: script handling curl and md5
+  
+  urlFile:
+    type: File
+    label: list of URLs to download from
 
 outputs:
   out1:
-    type: Directory[]
+    type: File[]
+    label: container with downloaded files
     outputBinding:
       glob: "*"
-    outputSource: downloadUrl/out1
+    outputSource: download-urls/out1
 
 steps:
-  readUrlList:
-    run: readUrlList.cwl
-    in: 
+  get-urls:
+    run: get-urls.cwl
+    in:
       infile: urlFile
     out: [urls]
 
   downloadUrl:
-    run: downloadUrl.cwl
+    run: download-urls.cwl
     scatter: [url]
     scatterMethod: dotproduct
     in:
       bashScript: bashScript
-      url: readUrlList/urls
+      url: get-urls/urls
     out: [out1]
