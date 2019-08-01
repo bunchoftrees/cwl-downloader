@@ -35,15 +35,11 @@ def get_arrays():
 
     print(urls[0:6])
     print(filenames[0:6])
-'''
-    with open('urls.txt', 'w') as file_handler:
-        for url in urls:
-            file_handler.write("{}\n".format(url))
 
-    with open('filenames.txt', 'w') as file_handler:
-        for filename in filenames:
-            file_handler.write("{}\n".format(filename))
-'''
+    with open('source.yml', 'w') as file_handler:
+        file_handler.write("filenames: {}\n\n".format(filenames))
+        file_handler.write("urls: {}\n".format(urls))
+
 if __name__ == '__main__':
     get_arrays()
 
