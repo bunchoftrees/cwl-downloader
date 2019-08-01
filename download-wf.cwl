@@ -29,7 +29,7 @@ inputs:
 
 outputs:
   out1:
-    type: File
+    type: Directory[]
     label: container with downloaded files
     outputBinding:
       glob: "*"
