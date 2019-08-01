@@ -30,7 +30,7 @@ inputs:
 
 outputs:
   out1:
-    type: File[]
+    type: File
     label: files generated from download and md5sum
     outputBinding:
       glob: "*"
