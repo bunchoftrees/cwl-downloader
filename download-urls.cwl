@@ -9,9 +9,9 @@ $namespaces:
   cwltool: "http://commonwl.org/cwltool#"
 
 requirements:
-  - class: DockerRequirement
+  DockerRequirement:
     dockerPull: cure/arvados-download
-  - ShellCommandRequirement: {}
+  ShellCommandRequirement: {}
 
 hints:
   arv:RuntimeConstraints:
