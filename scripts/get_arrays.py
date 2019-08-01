@@ -33,8 +33,18 @@ def get_arrays():
                 group = group + 1
                 filenames.append(matches.group(group))
 
-    print(urls[0])
-    print(filenames[0])
+    # print(urls)
+    # print(filenames)
+
+    with open('urls.txt', 'w') as file_handler:
+        for url in urls:
+            file_handler.write("{}\n".format(url))
+
+    with open('filenames.txt', 'w') as file_handler:
+        for filename in filenames:
+            file_handler.write("{}\n".format(filename))
 
 if __name__ == '__main__':
     get_arrays()
+
+    # print arrays to files

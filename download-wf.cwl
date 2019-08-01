@@ -22,34 +22,33 @@ hints:
     outputTTL: 86400
 
 inputs:
-  bashScript:
+  fn_list:
     type: File
     label: script handling curl and md5
   
-  urlFile:
+  url_list:
     type: File
     label: list of URLs to download from
 
 outputs:
-  out1:
-    type: File[]
-    label: container with downloaded files
-    outputBinding:
-      glob: "*"
-    outputSource: download-urls/out1
-
+  urls:
+    type: string[]
+  filenames:
+    type: string[]
 steps:
-  get-urls:
-    run: get-urls.cwl
+  get-inputs:
+    run: get-inputs.cwl
     in:
-      infile: urlFile
-    out: [urls]
+      url_list: url_list
+      fn_list: fn_list
 
-  downloadUrl:
-    run: download-urls.cwl
-    scatter: [url]
-    scatterMethod: dotproduct
-    in:
-      bashScript: bashScript
-      url: get-urls/urls
-    out: [out1]
+    out: [urls, filenames]
+
+  #downloadUrl:
+    #run: download-urls.cwl
+    #scatter: [url]
+    #scatterMethod: dotproduct
+    #in:
+      #bashScript: bashScript
+      #url: get-urls/urls
+    #out: [out1]
