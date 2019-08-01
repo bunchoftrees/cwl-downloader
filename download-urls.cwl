@@ -11,6 +11,7 @@ $namespaces:
 requirements:
   - class: DockerRequirement
     dockerPull: cure/arvados-download
+  - ShellCommandRequirement: {}
 
 hints:
   arv:RuntimeConstraints:
@@ -18,22 +19,32 @@ hints:
     keep_cache: 4096
   arv:APIRequirement: {}
 
-baseCommand: bash
 inputs:
-  bashScript:
-    type: File
-    label: script handling curl and md5
-    inputBinding:
-      position: 1
+  filename:
+    type: string
+    label: name for downloaded file
+
   url:
     type: string
-    label: url to download from
-    inputBinding:
-      position: 2
+    label: url to download file from
 
 outputs:
   out1:
-    type: File[]
+    type: File
     label: files generated from download and md5sum
     outputBinding:
       glob: "*"
+
+baseCommand: wget
+arguments:
+  - "-O"
+  - $(inputs.filename)
+  - $(inputs.url)
+  - shellQuote: false
+    valueFrom: "&&"
+  - "md5sum"
+  - "-b"
+  - $(inputs.filename)
+  - shellQuote: false
+    valueFrom: ">"
+  - $(inputs.filename.basename).md5sum

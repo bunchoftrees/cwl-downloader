@@ -25,7 +25,7 @@ def get_arrays():
 
     for line in url_list:
         line = line.strip()
-        urls.append('"' + line + '"')
+        urls.append(line)
 
         matches = re.search(regex, line)
         if matches:
@@ -33,9 +33,9 @@ def get_arrays():
                 group = group + 1
                 filenames.append(matches.group(group))
 
-    # print(urls)
-    # print(filenames)
-
+    print(urls[0:6])
+    print(filenames[0:6])
+'''
     with open('urls.txt', 'w') as file_handler:
         for url in urls:
             file_handler.write("{}\n".format(url))
@@ -43,7 +43,7 @@ def get_arrays():
     with open('filenames.txt', 'w') as file_handler:
         for filename in filenames:
             file_handler.write("{}\n".format(filename))
-
+'''
 if __name__ == '__main__':
     get_arrays()
 
