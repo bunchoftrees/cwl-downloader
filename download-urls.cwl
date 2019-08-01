@@ -47,4 +47,4 @@ arguments:
   - $(inputs.filename)
   - shellQuote: false
     valueFrom: ">"
-  - $(inputs.filename.basename).md5sum
+  - $(inputs.filename).md5sum
