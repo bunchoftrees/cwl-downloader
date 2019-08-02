@@ -49,4 +49,4 @@ steps:
     in:
       url: url_list
       filename: fn_list
-    out: [out1]
+    out: out1
