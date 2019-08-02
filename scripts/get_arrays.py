@@ -37,8 +37,8 @@ def get_arrays():
     # print(filenames[0:6])
 
     with open('source.yml', 'w') as file_handler:
-        file_handler.write("filenames: {}\n\n".format(filenames))
-        file_handler.write("urls: {}\n".format(urls))
+        file_handler.write("fn_list: {}\n\n".format(filenames))
+        file_handler.write("url_list: {}\n".format(urls))
 
 if __name__ == '__main__':
     get_arrays()
