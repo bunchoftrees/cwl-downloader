@@ -2,7 +2,7 @@
 
 cwlVersion: v1.0
 class: Workflow
-label: Downloads files from URL(s)
+label: Simons Diversity from URL(s)
 
 $namespaces:
   arv: "http://arvados.org/cwl#"
@@ -28,20 +28,16 @@ inputs:
     type: string[]
 
 outputs:
-  out1:
+  result:
     type: File[]
     label: container with downloaded files
-    outputSource: download-urls/out1
+    outputSource: download-urls/result
+    outputBinding:
+      glob: "*.vcf.gz"
+    secondaryFiles:
+      - .md5sum
 
 steps:
-  #get-inputs:
-    #run: get-inputs.cwl
-    #in:
-      #url_list: url_list
-      #fn_list: fn_list
-
-    #out: [urls, filenames]
-
   download-urls:
     run: download-urls.cwl
     scatter: [url, filename]
@@ -49,4 +45,5 @@ steps:
     in:
       url: url_list
       filename: fn_list
-    out: out1
+    out:
+      [result]

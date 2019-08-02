@@ -10,8 +10,9 @@ $namespaces:
 
 requirements:
   DockerRequirement:
-    dockerPull: cure/arvados-download
+    dockerPull: curii/arvados-download
   ShellCommandRequirement: {}
+  StepInputExpressionRequirement: {}
 
 hints:
   arv:RuntimeConstraints:
@@ -29,11 +30,13 @@ inputs:
     label: url to download file from
 
 outputs:
-  out1:
-    type: File[]
-    label: files generated from download and md5sum
+  result:
+    type: File
+    label: Compressed vcf and index file
     outputBinding:
-      glob: "*"
+      glob: "*.vcf.gz"
+    secondaryFiles:
+      - .md5sum
 
 baseCommand: wget
 arguments:
