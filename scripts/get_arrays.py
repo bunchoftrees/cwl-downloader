@@ -47,16 +47,16 @@ def get_arrays():
         print(filenames[0:5])
 
     if single_test:
-        with open('single.yml', 'w') as file_handler:
+        with open('../yml/single.yml', 'w') as file_handler:
             file_handler.write("filename: {}\n\n".format(filenames[0]))
             file_handler.write("url: {}\n".format(urls[0]))
 
     if mini_test:
-        with open('mini.yml', 'w') as file_handler:
+        with open('../yml/mini.yml', 'w') as file_handler:
             file_handler.write("fn_list: {}\n\n".format(filenames[0:5]))
             file_handler.write("url_list: {}\n".format(urls[0:5]))
 
-    with open('../yml/secondary.yml', 'w') as file_handler:
+    with open('../yml/manifest.yml', 'w') as file_handler:
             file_handler.write("fn_list: {}\n\n".format(filenames))
             file_handler.write("url_list: {}\n".format(urls))
 
