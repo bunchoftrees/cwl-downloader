@@ -9,7 +9,7 @@ Bash script can be depricated by updating the CWL step to use command line args
 Run on Arvados node:
 
    ``` bash
-   arvados-cwl-runner --api=containers --disable-reuse --no-wait --project-uuid [project uuid] download-wf.cwl yml/[your specified yml]
+   arvados-cwl-runner --api=containers --no-wait --project-uuid su92l-j7d0g-564z7zxkttp3vih download-wf.cwl yml/source.yml
    ```
 
 ## Extras  
