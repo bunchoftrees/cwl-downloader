@@ -12,9 +12,18 @@ def get_arrays():
     parser.add_argument("url_list", metavar="URL_LIST", nargs='?',
                         type=argparse.FileType('r'), default=sys.stdin,
                         help="Input URL list file via stdin")
+    parser.add_argument("-s", "--singletest", help="Generates a yml for a single \
+                        step for CWL testing", action="store_true")
+    parser.add_argument("-p", "--printsamples", help="Prints the first 5 items in \
+                        the constructed arrays", action="store_true")
+    parser.add_argument("-m", "--minitest", help="Generates a yml containing the \
+                        first 5 items in the constructed arrays", action="store_true")
 
     args = parser.parse_args()
     url_list = args.url_list
+    single_test = args.singletest
+    print_samples = args.printsamples
+    mini_test = args.minitest
 
     # Setting up arrays
     urls = []
@@ -33,14 +42,23 @@ def get_arrays():
                 group = group + 1
                 filenames.append(matches.group(group))
 
-    # print(urls[0:6])
-    # print(filenames[0:6])
+    if print_samples:
+        print(urls[0:5])
+        print(filenames[0:5])
 
-    with open('source.yml', 'w') as file_handler:
-        file_handler.write("fn_list: {}\n\n".format(filenames))
-        file_handler.write("url_list: {}\n".format(urls))
+    if single_test:
+        with open('single.yml', 'w') as file_handler:
+            file_handler.write("filename: {}\n\n".format(filenames[0]))
+            file_handler.write("url: {}\n".format(urls[0]))
+
+    if mini_test:
+        with open('mini.yml', 'w') as file_handler:
+            file_handler.write("fn_list: {}\n\n".format(filenames[0:5]))
+            file_handler.write("url_list: {}\n".format(urls[0:5]))
+
+    with open('../yml/secondary.yml', 'w') as file_handler:
+            file_handler.write("fn_list: {}\n\n".format(filenames))
+            file_handler.write("url_list: {}\n".format(urls))
 
 if __name__ == '__main__':
     get_arrays()
-
-    # print arrays to files
