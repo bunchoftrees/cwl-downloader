@@ -31,8 +31,6 @@ outputs:
   out1:
     type: File[]
     label: container with downloaded files
-    outputBinding:
-      glob: "*"
     outputSource: download-urls/out1
 
 steps:
