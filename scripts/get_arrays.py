@@ -33,8 +33,8 @@ def get_arrays():
                 group = group + 1
                 filenames.append(matches.group(group))
 
-    print(urls[0:6])
-    print(filenames[0:6])
+    # print(urls[0:6])
+    # print(filenames[0:6])
 
     with open('source.yml', 'w') as file_handler:
         file_handler.write("filenames: {}\n\n".format(filenames))
