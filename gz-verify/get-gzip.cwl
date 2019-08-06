@@ -36,5 +36,5 @@ expression: |
         filenames.push(baseName);
       }
     }
-    return { gzips": gzips, "filenames": filenames};
+    return { "gzips": gzips, "filenames": filenames};
   }
