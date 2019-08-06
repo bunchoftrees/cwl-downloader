@@ -21,7 +21,7 @@ inputs:
     type: string
     label: url to download file from
 outputs:
-  validate:
+  validated:
     type: File
     label: Compressed vcf and index file
     outputBinding:
