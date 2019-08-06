@@ -32,7 +32,6 @@ expression: |
         var baseName = file.nameroot.split(".")[0];
         var mainName = baseName+'.vcf.gz';
         gzips.push(main);
-        beds.push(bed);
         filenames.push(baseName);
       }
     }
