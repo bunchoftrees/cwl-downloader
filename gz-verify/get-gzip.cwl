@@ -14,10 +14,9 @@ inputs:
     type: Directory
     label: Directory containing compressed VCF, md5sum, and index files for processing
 outputs:
- gzips:
+  gzips:
     type: File[]
     label: Array of compressed VCF files from input directory
-
   filenames:
     type: string[]
     label: Array of file names to maintain naming convention for integrity files
