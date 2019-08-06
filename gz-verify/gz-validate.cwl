@@ -15,7 +15,7 @@ hints:
   arv:APIRequirement: {}
 inputs:
   zipped:
-    type: string
+    type: File
     label: name for downloaded file
   filename:
     type: string
