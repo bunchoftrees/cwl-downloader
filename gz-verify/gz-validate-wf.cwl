@@ -12,7 +12,7 @@ requirements:
     ramMin: 12000
   - class: ScatterFeatureRequirement
 inputs:
-  gzip-dir:
+  gzipdir:
     type: Directory
     label: Directory containing compressed VCF, md5sum, and index files for processing
 outputs:

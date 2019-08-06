@@ -10,7 +10,7 @@ cwlVersion: v1.0
 class: ExpressionTool
 label: Get listing of ggzipped files and associated filenames
 inputs:
-  gzip-dir:
+  gzipdir:
     type: Directory
     label: Directory containing compressed VCF, md5sum, and index files for processing
 outputs:
@@ -25,7 +25,7 @@ expression: |
     var gzips = [];
     var filenames = [];
 
-    for (var i = 0; i < inputs.gzip-dir.listing.length; i++) {
+    for (var i = 0; i < inputs.gzipdir.listing.length; i++) {
       var file = inputs.vcfsdir.listing[i];
       if (file.nameext == '.gz') {
         var main = file;
