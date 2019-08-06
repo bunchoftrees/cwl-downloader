@@ -6,7 +6,7 @@ class: Workflow
 label: Test file integrity of gzip compressed files
 requirements:
   - class: DockerRequirement
-    dockerPull: lcurii/arvados-download
+    dockerPull: curii/arvados-download
   - class: ResourceRequirement
     coresMin: 1
     ramMin: 12000
