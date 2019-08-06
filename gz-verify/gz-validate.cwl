@@ -31,5 +31,7 @@ arguments:
   - "-tv"
   - $(inputs.zipped)
   - shellQuote: false
-    valueFrom: "&>"
+    valueFrom: "|"
+  - "tee"
+  - "-a"
   - $(inputs.zipped.basename).vfy
