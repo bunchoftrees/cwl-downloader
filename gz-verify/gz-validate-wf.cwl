@@ -16,27 +16,21 @@ inputs:
     type: Directory
     label: Directory containing compressed VCF, md5sum, and index files for processing
 outputs:
-  #validated:
-    #type: File[]
-    #label: Directory containing .vld (validate status) files
-    #outputSource: gz-validate/validated
-  gzips:
+  validated:
     type: File[]
-    outputSource: get-gzip/gzips
-  filenames:
-    type: string[]
-    outputSource: get-gzip/filenames
+    label: Directory containing .vld (validate status) files
+    outputSource: gz-validate/validated
 steps:
   get-gzip:
     run: get-gzip.cwl
     in:
       gzipdir: gzipdir
     out: [gzips, filenames]
-  #gz-validate:
-    #run: gz-validate.cwl
-    #scatter: [zipped, filename]
-    #scatterMethod: dotproduct
-    #in:
-      #zipped: get-gzip/gzips
-      #filename: get-gzip/filenames
-    #out: [validated]
+  gz-validate:
+    run: gz-validate.cwl
+    scatter: [zipped, filename]
+    scatterMethod: dotproduct
+    in:
+      zipped: get-gzip/gzips
+      filename: get-gzip/filenames
+    out: [validated]
