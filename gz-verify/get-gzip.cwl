@@ -27,9 +27,12 @@ expression: |
 
     for (var i = 0; i < inputs.gzipdir.listing.length; i++) {
       var file = inputs.gzipdir.listing[i];
-      if (file.nameext == ".gz") {
-        gzips.push(file);
+      if (file.nameext == '.gz') {
+        var main = file;
+        var baseName = file.nameroot.split(".")[0];
+        gzips.push(main);
+        filenames.push(baseName);
       }
     }
-    return { "gzips": gzips };
+    return { "gzips": gzips, "filenames": filenames };
   }
