@@ -23,12 +23,15 @@ outputs:
   gzips:
     type: File[]
     outputSource: get-gzip/gzips
+  filenames:
+    type: string[]
+    outputSource: get-gzip/filenames
 steps:
   get-gzip:
     run: get-gzip.cwl
     in:
       gzipdir: gzipdir
-    out: [gzips]
+    out: [gzips, filenames]
   #gz-validate:
     #run: gz-validate.cwl
     #scatter: [zipped, filename]
