@@ -30,7 +30,6 @@ expression: |
       if (file.nameext == '.gz') {
         var main = file;
         var baseName = file.nameroot.split(".")[0];
-        var mainName = baseName+'.vcf.gz';
         gzips.push(main);
         filenames.push(baseName);
       }
