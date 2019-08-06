@@ -25,7 +25,7 @@ expression: |
     var gzips = [];
     var filenames = [];
 
-    for (var i = 0; i < inputs.vcfsdir.listing.length; i++) {
+    for (var i = 0; i < inputs.gzip-dir.listing.length; i++) {
       var file = inputs.vcfsdir.listing[i];
       if (file.nameext == '.gz') {
         var main = file;
