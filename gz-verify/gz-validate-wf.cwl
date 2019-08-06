@@ -26,11 +26,11 @@ steps:
     in:
       gzipdir: gzipdir
     out: [gzips, filenames]
-  gz-validate:
-    run: gz-validate.cwl
-    scatter: [zipped, filename]
-    scatterMethod: dotproduct
-    in:
-      zipped: get-gzip/gzips
-      filename: get-gzip/filenames
-    out: [validated]
+  #gz-validate:
+    #run: gz-validate.cwl
+    #scatter: [zipped, filename]
+    #scatterMethod: dotproduct
+    #in:
+      #zipped: get-gzip/gzips
+      #filename: get-gzip/filenames
+    #out: [validated]

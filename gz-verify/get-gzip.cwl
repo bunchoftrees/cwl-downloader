@@ -17,9 +17,9 @@ outputs:
   gzips:
     type: File[]
     label: Array of compressed VCF files from input directory
-  filenames:
-    type: string[]
-    label: Array of file names to maintain naming convention for integrity files
+  #filenames:
+    #type: string[]
+    #label: Array of file names to maintain naming convention for integrity files
 expression: |
   ${
     var gzips = [];
@@ -29,10 +29,10 @@ expression: |
       var file = inputs.vcfsdir.listing[i];
       if (file.nameext == '.gz') {
         var main = file;
-        var baseName = file.nameroot.split(".")[0];
+        // var baseName = file.nameroot.split(".")[0];
         gzips.push(main);
-        filenames.push(baseName);
+        // filenames.push(baseName);
       }
     }
-    return { "gzips": gzips, "filenames": filenames};
+    return { "gzips": gzips };
   }
