@@ -19,7 +19,7 @@ outputs:
   validate:
     type: File[]
     label: Directory containing .vld (validate status) files
-    outputSource: gz-validate/result
+    outputSource: gz-validate/validate
 steps:
   get-gzip:
     run: get-gzip.cwl
