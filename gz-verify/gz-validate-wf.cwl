@@ -24,7 +24,7 @@ steps:
   get-gzip:
     run: get-gzip.cwl
     in:
-      gzip-dir: gzip-dir
+      gzipdir: gzipdir
     out: [gzips, filenames]
   gz-validate:
     run: gz-validate.cwl
