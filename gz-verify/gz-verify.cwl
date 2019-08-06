@@ -3,7 +3,7 @@ $namespaces:
   cwltool: "http://commonwl.org/cwltool#"
 cwlVersion: v1.0
 class: CommandLineTool
-label: Downloads files from URL(s)
+label: Test file integrity of gzip compressed files
 requirements:
   DockerRequirement:
     dockerPull: curii/arvados-download

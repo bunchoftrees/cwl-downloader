@@ -6,7 +6,7 @@ class: Workflow
 label: Test file integrity of gzip compressed files
 requirements:
   - class: DockerRequirement
-    dockerPull: l7g/preprocess-vcfbed
+    dockerPull: lcurii/arvados-download
   - class: ResourceRequirement
     coresMin: 1
     ramMin: 12000
@@ -16,7 +16,7 @@ inputs:
     type: Directory
     label: Directory containing compressed VCF, md5sum, and index files for processing
 outputs:
-  result:
+  validate:
     type: File[]
     label: Directory containing .vld (validate status) files
     outputSource: gz-validate/result
