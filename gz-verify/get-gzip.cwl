@@ -17,9 +17,9 @@ outputs:
   gzips:
     type: File[]
     label: Array of compressed VCF files from input directory
-  #filenames:
-    #type: string[]
-    #label: Array of file names to maintain naming convention for integrity files
+  filenames:
+    type: string[]
+    label: Array of file names to maintain naming convention for integrity files
 expression: |
   ${
     var gzips = [];
