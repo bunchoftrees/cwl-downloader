@@ -32,4 +32,4 @@ arguments:
   - $(inputs.zipped)
   - shellQuote: false
     valueFrom: "&>"
-  - $(inputs.filename).vfy
+  - $(inputs.zipped.basename).vfy
