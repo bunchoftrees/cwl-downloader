@@ -28,7 +28,7 @@ steps:
     run: get-gzip.cwl
     in:
       gzipdir: gzipdir
-    out: [gzips, filenames]
+    out: [gzips]
   #gz-validate:
     #run: gz-validate.cwl
     #scatter: [zipped, filename]
