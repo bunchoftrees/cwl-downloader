@@ -29,9 +29,7 @@ expression: |
       var file = inputs.vcfsdir.listing[i];
       if (file.nameext == '.gz') {
         var main = file;
-        // var baseName = file.nameroot.split(".")[0];
         gzips.push(main);
-        // filenames.push(baseName);
       }
     }
     return { "gzips": gzips };
