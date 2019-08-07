@@ -23,4 +23,4 @@ for filename in glob.glob(os.path.join(basepath, '*.vfy')):
 d = {"filenames": filenames, "passed": passed}
 df = pd.DataFrame(d)
 
-print(df)
+df.to_csv(r'gzverify.csv')
