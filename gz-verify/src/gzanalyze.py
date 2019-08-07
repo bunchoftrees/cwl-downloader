@@ -13,7 +13,7 @@ import pandas as pd
 
 filenames = []
 passed = []
-basepath = '/Users/forrest/testing/'
+basepath = '/data-sdd/forrest/keep/by_id/su92l-4zz18-ywqn26gpxtolv1x'
 for filename in glob.glob(os.path.join(basepath, '*.vfy')):
     filenames.append(filename)
     with open(filename, 'r') as f:
