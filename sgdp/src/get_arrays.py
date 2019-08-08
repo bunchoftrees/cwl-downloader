@@ -17,7 +17,9 @@ def get_arrays():
     parser.add_argument("-p", "--printsamples", help="Prints the first 5 items in \
                         the constructed arrays", action="store_true")
     parser.add_argument("-m", "--minitest", help="Generates a yml containing the \
-                        first 5 items in the constructed arrays", action="store_true")
+                        first 5 items in arrays", action="store_true")
+    parser.add_argument("-f", "--filenames", help="creates a txt of all filenames \
+                        in a single file", action="store_true")
 
     args = parser.parse_args()
     url_list = args.url_list
@@ -50,6 +52,11 @@ def get_arrays():
         with open('../yml/single.yml', 'w') as file_handler:
             file_handler.write("filename: {}\n\n".format(filenames[0]))
             file_handler.write("url: {}\n".format(urls[0]))
+
+    if filenames:
+        with open('../yml/filenames.txt', 'w') as file_handler:
+            for file in filenames:
+                file_handler.write("{}\n".format(file))
 
     if mini_test:
         with open('../yml/mini.yml', 'w') as file_handler:
