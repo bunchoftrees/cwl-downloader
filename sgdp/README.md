@@ -8,6 +8,26 @@ To mediate the downloading, constructing a pipeline that includes `wget -O [file
 
 ### How to run
 
+Supply a txt file in `src` containing URLs and run `src/get_arrays.py`
+
+Additional flags and help for `get_arrays.py`:
+
+   ``` bash
+   usage: get_arrays [-h] [-s] [-p] [-m] [-f] [URL_LIST]
+
+   Get arrays of URLs and filenames from listing of URLs.
+
+   positional arguments:
+      URL_LIST            Input URL list file via stdin
+
+   optional arguments:
+      -h, --help          show this help message and exit
+      -s, --singletest    Generates a yml for a single step for CWL testing
+      -p, --printsamples  Prints the first 5 items in the constructed arrays
+      -m, --minitest      Generates a yml containing the first 5 items in arrays
+      -f, --filenames     creates a txt of all filenames in a single file
+   ```
+
 Run on Arvados node:
 
    ``` bash
@@ -16,18 +36,14 @@ Run on Arvados node:
 
 ## Extras  
 
-for paired fastq's:
+To validate if bgzipped files test OK (via `gzip -tv` navigate to `sgdp/gz-verify`:
 
    ``` bash
-   cwl-runner --local downloadPaired.cwl --bashScript downloadPaired.sh --urlFile 2-paired.txt
+   arvados-cwl-runner --api=containers --no-wait --project-uuid su92l-some-projectuuid gz-validate-wf.cwl yml/sgdp.yml
    ```
 
-   ``` bash
-   cwl-runner --debug downloadPaired.cwl --bashScript downloadPaired.sh --urlFile 2-paired.txt
-   ```
+Run `src/getstatus.py` to generate a directory listing and status.
 
-for md5sum'ing:
+   (note: `bgzip` does not have a test function, and many bgzipped files will also contain a message`gzip: ./file.gz: extra field of 6 bytes ignored`, so `getstatus.py` ignores these lines)
 
-   ``` bash
-   cwl-runner --local md5sum.cwl md5sum.yml
-   ```
+For a cleaner format of validation, run `src/gzanalyze.py` after running `getstatus.py` along with the `filenames.txt` that can be created with `sgdp/src/get_arrays.py`
