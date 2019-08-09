@@ -8,9 +8,21 @@ To mediate the downloading, constructing a pipeline that includes `wget -O [file
 
 ### How to run
 
-Supply a txt file in `src` containing URLs and run `src/get_arrays.py`
+* Build the Dockerfile in dockerconts:
 
-Additional flags and help for `get_arrays.py`:
+   ``` bash
+   docker build -t curii/arvados-download .
+   ```
+
+* Push your Docker image to Arvados:
+
+   ``` bash
+   arv-keepdocker curii/arvados-download --project-uuid su92l-uuid-project-here
+   ```
+
+* Supply a txt file in `src` containing URLs and run `src/get_arrays.py`
+
+  * Additional flags and help for `get_arrays.py`:
 
    ``` bash
    usage: get_arrays [-h] [-s] [-p] [-m] [-f] [URL_LIST]
@@ -28,7 +40,7 @@ Additional flags and help for `get_arrays.py`:
       -f, --filenames     creates a txt of all filenames in a single file
    ```
 
-Run on Arvados node:
+* Run on Arvados node:
 
    ``` bash
    arvados-cwl-runner --api=containers --no-wait --project-uuid su92l-some-projectuuid download-wf.cwl yml/manifest.yml
@@ -36,14 +48,14 @@ Run on Arvados node:
 
 ## Extras  
 
-To validate if bgzipped files test OK (via `gzip -tv` navigate to `sgdp/gz-verify`:
+* To validate if bgzipped files test OK (via `gzip -tv` navigate to `sgdp/gz-verify`:
 
    ``` bash
    arvados-cwl-runner --api=containers --no-wait --project-uuid su92l-some-projectuuid gz-validate-wf.cwl yml/sgdp.yml
    ```
 
-Run `src/getstatus.py` to generate a directory listing and status.
+* Run `src/getstatus.py` to generate a directory listing and status.
 
    (note: `bgzip` does not have a test function, and many bgzipped files will also contain a message`gzip: ./file.gz: extra field of 6 bytes ignored`, so `getstatus.py` ignores these lines)
 
-For a cleaner format of validation, run `src/gzanalyze.py` after running `getstatus.py` along with the `filenames.txt` that can be created with `sgdp/src/get_arrays.py`
+* For a cleaner format of validation, run `src/gzanalyze.py` after running `getstatus.py` along with the `filenames.txt` that can be created with `sgdp/src/get_arrays.py`
