@@ -9,8 +9,9 @@ requirements:
     dockerPull: arvados/l7g
   ResourceRequirement:
     ramMin: 12000
+  ShellCommandRequirement: {}
 inputs:
-  vcf:
+  filteredvcf:
     type: File
     label: Input VCF file
     # secondaryFiles: [.tbi]
@@ -20,19 +21,29 @@ inputs:
   qualcutoff:
     type: int
     label: Filtering QUAL cutoff threshold
+  script:
+    type: File
+    label: Script to extract BED from VCFs
 outputs:
   filteredvcf:
     type: File
     label: Filtered VCF
     outputBinding:
-      glob: "*vcf.gz"
-    secondaryFiles: [.tbi]
-baseCommand: [bcftools, view]
+      glob: "*.vcf.gz"
+    # secondaryFiles: [.tbi]
+  bed:
+    type: File
+    label: Extracted BED
+    outputBinding:
+      glob: "*.bed"
+baseCommand: [python]
 arguments:
-  - "-Oz"
-  - "-e"
-  - shellQuote: true
-    valueFrom: FMT/GQ<$(inputs.gqcutoff) | QUAL<$(inputs.qualcutoff) | QUAL='.'
-  - "-o"
-  - $(inputs.vcf.nameroot).gz
-  - $(inputs.vcf)
+  - $(inputs.script)
+  - "--min_GQ"
+  - $(inputs.gqcutoff)
+  - "--min_QUAL"
+  - $(inputs.qualcutoff)
+  - $(inputs.filteredvcf)
+  - shellQuote: false
+    valueFrom: ">"
+  - $(inputs.filteredvcf.nameroot).bed
