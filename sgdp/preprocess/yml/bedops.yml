@@ -1,0 +1,3 @@
+filteredvcf:
+  class: File
+  location: keep:c6ec0f79bd075780bfeadfb19d416dd2+14780/LP6005441-DNA_A01.annotated.nh.vcf.bed

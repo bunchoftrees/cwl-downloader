@@ -3,27 +3,28 @@ $namespaces:
   cwltool: "http://commonwl.org/cwltool#"
 cwlVersion: v1.0
 class: CommandLineTool
-label: Creates BED file from filtered VCF
+label: Merge spanning features
 requirements:
   DockerRequirement:
-    dockerPull: arvados/l7g
+    dockerPull: arvados/l7g/sgdp
   ResourceRequirement:
     ramMin: 12000
+    tmpdirMin: 500000
   ShellCommandRequirement: {}
 inputs:
-  filteredvcf:
+  bed:
     type: File
-    label: Input VCF file
+    label: Input bed file
     # secondaryFiles: [.tbi]
-  gqcutoff:
-    type: int
-    label: Filtering GQ cutoff threshold  
-  qualcutoff:
-    type: int
-    label: Filtering QUAL cutoff threshold
-  script:
-    type: File
-    label: Script to extract BED from VCFs
+  #gqcutoff:
+    #type: int
+    #label: Filtering GQ cutoff threshold  
+  #qualcutoff:
+    #type: int
+    #label: Filtering QUAL cutoff threshold
+  #script:
+    #type: File
+    #label: Script to extract BED from VCFs
 outputs:
   # vcf:
     # type: File
@@ -31,19 +32,18 @@ outputs:
     # outputBinding:
       # glob: "*.vcf.gz"
     # secondaryFiles: [.tbi]
-  bed:
+  mergedbed:
     type: File
     label: Extracted BED
     outputBinding:
       glob: "*.bed"
-baseCommand: [python]
+baseCommand: [bedtools]
 arguments:
-  - $(inputs.script)
-  - "--min_GQ"
-  - $(inputs.gqcutoff)
-  - "--min_QUAL"
-  - $(inputs.qualcutoff)
-  - $(inputs.filteredvcf)
+  - "merge"
+  - "-i"
+  - $(inputs.bed)
   - shellQuote: false
     valueFrom: ">"
-  - $(inputs.filteredvcf.nameroot).bed
+  - $(inputs.bed.nameroot)merged.bed
+
+  

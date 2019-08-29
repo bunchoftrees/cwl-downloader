@@ -1,0 +1,3 @@
+bed:
+  class: File
+  location: keep:1e23b2f23219f249b9b8c5539624a793+181608/LP6005441-DNA_A01.annotated.nh.vcf.bed
